@@ -21,8 +21,12 @@ export default function Header() {
     <header className="bg-white shadow-sm">
       <div className="container-main py-4 flex flex-col md:flex-row md:items-center md:justify-between gap-5">
         <div className="flex items-center gap-4">
-          <div className="w-20 h-20 rounded-full img-placeholder shrink-0">
-            LOGO
+          <div className="w-30 h-30 rounded-full bg-white flex items-center justify-center shrink-0 overflow-hidden">
+            <img
+              src="/images/logo.webp"
+              alt="โลโก้เทศบาลตำบลของเรา"
+              className="w-30 h-30 object-contain"
+            />
           </div>
           <div>
             <p className="text-lg md:text-xl font-semibold text-[#063b75]">
