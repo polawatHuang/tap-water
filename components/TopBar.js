@@ -17,7 +17,10 @@ export default function TopBar() {
         </div>
 
         <div className="flex items-center gap-3 whitespace-nowrap">
-          <span className="hidden md:block">ขนาดตัวอักษร ก ก ก</span>
+          <span className="hidden md:block">ขนาดตัวอักษร</span>
+          <button className="px-2 py-1 h-[28px] w-[28px] bg-white text-[#003f82] rounded-md font-medium text-xs">ก</button>
+          <button className="relative px-2 h-[28px] w-[28px] bg-white text-[#003f82] rounded-md font-medium text-xl"><span className="absolute top-[-2px] left-[8px]">ก</span></button>
+          <button className="relative h-[28px] w-[28px] bg-white text-[#003f82] rounded-md font-medium text-2xl"><span className="absolute top-[-4px] left-[7px]">ก</span></button>
           <span className="flex items-center gap-1">
             <User size={15} /> เข้าสู่ระบบเจ้าหน้าที่
           </span>

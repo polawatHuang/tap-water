@@ -3,8 +3,8 @@ import { Phone, Mail, MapPin } from "lucide-react";
 export default function SupportFooter() {
   return (
     <>
-      <section className="container-main pb-0">
-        <div className="rounded-t-2xl bg-[#004b9b] text-white p-6 grid md:grid-cols-[230px_1fr_330px_150px] gap-5 items-center">
+      <section className="pb-0">
+        <div className="bg-[#004b9b] text-white p-6 grid md:grid-cols-[230px_1fr_330px_150px] gap-5 items-center">
           <div className="h-32 rounded-xl bg-white/15 flex items-center justify-center">
             <img
               src="/images/call-center.webp"

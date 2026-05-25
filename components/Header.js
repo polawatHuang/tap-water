@@ -6,14 +6,15 @@ import {
   ClipboardList,
   Phone,
 } from "lucide-react";
+import Link from "next/link";
 
 const menus = [
-  { label: "หน้าแรก", icon: Home },
-  { label: "ระบบประปา", icon: Droplet },
-  { label: "ระบบขยะ", icon: Trash2 },
-  { label: "GIS แผนที่", icon: MapPin },
-  { label: "รายงาน", icon: ClipboardList },
-  { label: "ติดต่อเรา", icon: Phone },
+  { label: "หน้าแรก", icon: Home, href: "/" },
+  { label: "ระบบประปา", icon: Droplet, href: "/water" },
+  { label: "ระบบขยะ", icon: Trash2, href: "/waste" },
+  { label: "GIS แผนที่", icon: MapPin, href: "/gis-map" },
+  { label: "รายงาน", icon: ClipboardList, href: "/report" },
+  { label: "ติดต่อเรา", icon: Phone, href: "/contact" },
 ];
 
 export default function Header() {
@@ -45,15 +46,15 @@ export default function Header() {
           {menus.map((item, index) => {
             const Icon = item.icon;
             return (
-              <button
+              <Link
                 key={item.label}
-                className={`flex flex-col items-center gap-1 text-[#003f82] font-medium pb-2 ${
-                  index === 0 ? "border-b-4 border-[#003f82]" : ""
-                }`}
+                href={item.href}
+                className={`flex flex-col items-center gap-1 text-[#003f82] font-medium pb-2 border-b-4 border-transparent cursor-pointer hover:border-[#003f82]`}
+                prefetch={false}
               >
                 <Icon size={28} strokeWidth={2.5} />
                 <span className="text-xs md:text-sm">{item.label}</span>
-              </button>
+              </Link>
             );
           })}
         </nav>
