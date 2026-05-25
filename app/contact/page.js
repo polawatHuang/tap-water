@@ -18,7 +18,13 @@ import { FaFacebookF } from "react-icons/fa";
 import { useState } from "react";
 
 export default function ContactPage() {
-  const [form, setForm] = useState({});
+  const [form, setForm] = useState({
+    name: "",
+    phone: "",
+    email: "",
+    subject: "สอบถามข้อมูลทั่วไป",
+    message: "",
+  });
 
   return (
     <main className="min-h-screen bg-[#f4f9ff]">
@@ -122,20 +128,20 @@ export default function ContactPage() {
               className="space-y-5"
               onSubmit={async (e) => {
                 e.preventDefault();
-                const form = e.target;
-                const name = form[0].value;
-                const phone = form[1].value;
-                const email = form[2].value;
-                const subject = form[3].value;
-                const message = form[4].value;
                 const res = await fetch("/api/contact", {
                   method: "POST",
                   headers: { "Content-Type": "application/json" },
-                  body: JSON.stringify({ name, phone, email, subject, message }),
+                  body: JSON.stringify(form),
                 });
                 if (res.ok) {
                   alert("ส่งข้อความเรียบร้อยแล้ว");
-                  form.reset();
+                  setForm({
+                    name: "",
+                    phone: "",
+                    email: "",
+                    subject: "สอบถามข้อมูลทั่วไป",
+                    message: "",
+                  });
                 } else {
                   alert("เกิดข้อผิดพลาดในการส่งข้อความ");
                 }
@@ -145,51 +151,48 @@ export default function ContactPage() {
                 <label className="mb-2 block text-sm font-bold text-[#073b78]">
                   ชื่อ - นามสกุล
                 </label>
-
                 <input
                   type="text"
+                  value={form.name}
+                  onChange={e => setForm({ ...form, name: e.target.value })}
                   placeholder="กรอกชื่อของท่าน"
                   className="w-full rounded-2xl border border-blue-100 bg-[#f8fbff] px-5 py-4 outline-none transition focus:border-[#0b5db3]"
-                  ref={(e) => setForm({ name: e?.value })}
                 />
               </div>
-
               <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
                 <div>
                   <label className="mb-2 block text-sm font-bold text-[#073b78]">
                     เบอร์โทรศัพท์
                   </label>
-
                   <input
                     type="text"
+                    value={form.phone}
+                    onChange={e => setForm({ ...form, phone: e.target.value })}
                     placeholder="08x-xxx-xxxx"
                     className="w-full rounded-2xl border border-blue-100 bg-[#f8fbff] px-5 py-4 outline-none transition focus:border-[#0b5db3]"
-                    ref={(e) => setForm({ phone: e?.value })}
                   />
                 </div>
-
                 <div>
                   <label className="mb-2 block text-sm font-bold text-[#073b78]">
                     E-Mail
                   </label>
-
                   <input
                     type="email"
+                    value={form.email}
+                    onChange={e => setForm({ ...form, email: e.target.value })}
                     placeholder="example@email.com"
                     className="w-full rounded-2xl border border-blue-100 bg-[#f8fbff] px-5 py-4 outline-none transition focus:border-[#0b5db3]"
-                    ref={(e) => setForm({ email: e?.value })}
                   />
                 </div>
               </div>
-
               <div>
                 <label className="mb-2 block text-sm font-bold text-[#073b78]">
                   หัวข้อ
                 </label>
-
                 <select
                   className="w-full rounded-2xl border border-blue-100 bg-[#f8fbff] px-5 py-4 outline-none transition focus:border-[#0b5db3]"
-                  ref={(e) => setForm({ subject: e?.value })}
+                  value={form.subject}
+                  onChange={e => setForm({ ...form, subject: e.target.value })}
                 >
                   <option>สอบถามข้อมูลทั่วไป</option>
                   <option>ระบบประปา</option>
@@ -198,20 +201,18 @@ export default function ContactPage() {
                   <option>แจ้งปัญหาการใช้งาน</option>
                 </select>
               </div>
-
               <div>
                 <label className="mb-2 block text-sm font-bold text-[#073b78]">
                   รายละเอียด
                 </label>
-
                 <textarea
                   rows={6}
+                  value={form.message}
+                  onChange={e => setForm({ ...form, message: e.target.value })}
                   placeholder="กรอกรายละเอียด..."
                   className="w-full rounded-2xl border border-blue-100 bg-[#f8fbff] px-5 py-4 outline-none transition focus:border-[#0b5db3]"
-                  ref={(e) => setForm({ message: e?.value })}
                 />
               </div>
-
               <button
                 type="submit"
                 className="inline-flex items-center gap-2 rounded-2xl bg-[#0b5db3] px-8 py-4 font-bold text-white shadow-lg transition hover:bg-[#08498c]"
